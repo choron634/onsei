@@ -70,7 +70,7 @@ int main (int argc, char **argv)
     FILE *fp;
     if( ( fp = fopen( argv[4], "a" ) ) == NULL )  exit( 1 );
 
-    fprintf(fp, "%d %lf\n", ff, max);
+    fprintf(fp, "%lf\n", max);
 
     fclose(fp);
 
