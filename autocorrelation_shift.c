@@ -72,7 +72,7 @@ int main (int argc, char **argv)
     FILE *fp;
     if( ( fp = fopen( argv[4], "ab" ) ) == NULL )  exit( 1 );
 
-    fprintf(fp, "%f\n", ff);
+    fprintf(fp, "%f %f\n",256.0*count/16000 ff);
 
     fclose(fp);
 
