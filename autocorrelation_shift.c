@@ -44,7 +44,7 @@ int main (int argc, char **argv)
     }
 
 
-    /* criculate correlation */
+    /* calculate correlation */
     for (int r = 0; r < framelen; r++){
       for (int t = 0; t < framelen-1-r ;t++){
         //correlation[r] += sdata[t]*sdata[t+r];
@@ -56,21 +56,23 @@ int main (int argc, char **argv)
     double r0=correlation[0];
     double max = 0;
     int max_index = 0;
-    for (int i = 10; i < framelen; i++){
+    for (int i = 30; i < framelen; i++){
       correlation[i]=correlation[i]/r0;
-      if(max < correlation[i] && i != 0)
+      if(max < correlation[i])
       {
         max = correlation[i];
         max_index = i;
       }
     }
 
-    int ff = max_index;
+    printf("%d\n",max_index);
+
+    double ff = 16000.0/max_index;//基本周期の逆数
 
     FILE *fp;
-    if( ( fp = fopen( argv[4], "a" ) ) == NULL )  exit( 1 );
+    if( ( fp = fopen( argv[4], "ab" ) ) == NULL )  exit( 1 );
 
-    fprintf(fp, "%lf\n", max);
+    fprintf(fp, "%f\n", ff);
 
     fclose(fp);
 
